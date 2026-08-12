@@ -1,13 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Client\ClientAuthController;
 use App\Http\Controllers\Mechanic\MechanicAuthController;
 use App\Http\Controllers\Admin\AdminAuthController;
 
-Route::get('locale/{locale}', [HomeController::class, 'locale'])->name('locale')->where('locale', '[a-z]+');
-Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/client/login', [ClientAuthController::class, 'showLogin'])->name('client.login');
 Route::post('/client/login', [ClientAuthController::class, 'login']);

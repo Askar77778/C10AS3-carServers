@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('spare_parts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->string('name');
             $table->string('name_tm');
             $table->string('name_ru');
-            $table->string('name_en');
             $table->decimal('price', 10, 2);
             $table->integer('stock')->default(0);
             $table->timestamps();

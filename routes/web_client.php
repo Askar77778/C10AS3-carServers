@@ -2,7 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Client\VehicleController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Client\AppointmentController;
+
+Route::get('locale/{locale}', [HomeController::class, 'locale'])->name('locale')->where('locale', '[a-z]+');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::middleware('auth')->prefix('client')->name('client.')->group(function () {
     Route::get('/vehicles', [VehicleController::class, 'index'])->name('vehicles.index');
