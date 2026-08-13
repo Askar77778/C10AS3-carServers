@@ -1,12 +1,12 @@
 @extends('layouts.app')
-@section('title', 'Login')
+@section('title', 'Register')
 
 @section('content')
 <div class="row justify-content-center my-5">
     <div class="col-md-5 col-lg-4">
         <div class="card shadow-sm border-0">
             <div class="card-body p-4">
-                <h4 class="card-title text-center mb-4 fw-bold">Sign In</h4>
+                <h4 class="card-title text-center mb-4 fw-bold">Create Account</h4>
 
                 @if($errors->any())
                     <div class="alert alert-danger py-2">
@@ -18,9 +18,9 @@
                     </div>
                 @endif
 
-                <form action="{{ route('login') }}" method="POST">
+                <form action="{{ route('register') }}" method="POST">
                     @csrf
-                    
+
                     <div class="mb-3">
                         <label class="form-label">Username</label>
                         <input type="text" name="username" class="form-control" value="{{ old('username') }}" required autofocus>
@@ -31,12 +31,17 @@
                         <input type="password" name="password" class="form-control" required>
                     </div>
 
+                    <div class="mb-3">
+                        <label class="form-label">Confirm Password</label>
+                        <input type="password" name="password_confirmation" class="form-control" required>
+                    </div>
+
                     <div class="d-grid mb-3">
-                        <button type="submit" class="btn btn-primary">Login</button>
+                        <button type="submit" class="btn btn-primary">Register</button>
                     </div>
 
                     <div class="text-center">
-                        <small class="text-muted">Don't have an account? <a href="{{ route('register') }}" class="text-decoration-none">Register</a></small>
+                        <small class="text-muted">Already registered? <a href="{{ route('login') }}" class="text-decoration-none">Login</a></small>
                     </div>
                 </form>
             </div>

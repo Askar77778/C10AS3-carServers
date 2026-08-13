@@ -1,16 +1,16 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary shadow-sm">
     <div class="container-xxl">
-        <a class="navbar-brand fw-bold" href="#">Admin Portal</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNavbar">
+        <a class="navbar-brand fw-bold" href="#">Mechanic Portal</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mechanicNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="adminNavbar">
+        <div class="collapse navbar-collapse" id="mechanicNavbar">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.mechanics.index') }}">Mechanics</a>
+                    <a class="nav-link" href="{{ route('mechanic.schedule.index') }}">Schedule</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.spare_parts.index') }}">Spare Parts</a>
+                    <a class="nav-link" href="{{ route('mechanic.jobs.index') }}">Assigned Jobs</a>
                 </li>
             </ul>
             <ul class="navbar-nav align-items-center">
@@ -25,7 +25,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="btn btn-outline-light btn-sm" href="{{ route('home') }}">Home</a>
+                    <a class="btn btn-outline-light btn-sm" href="{{ route('home') }}">Site Home</a>
                 </li>
             </ul>
         </div>

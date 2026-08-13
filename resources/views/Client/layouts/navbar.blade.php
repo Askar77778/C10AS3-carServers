@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
-    <div class="container">
+    <div class="container-xxl">
         <a class="navbar-brand fw-bold" href="{{ route('home') }}">CarService</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#publicNavbar">
             <span class="navbar-toggler-icon"></span>

@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('client.layouts.header')
 @section('title', 'Car Service - Home')
 
 @section('content')
 <div class="bg-dark text-white py-5 mb-5 text-center">
-    <div class="container py-4">
+    <div class="container-xxl py-4">
         <h1 class="display-4 fw-bold">Kärsaz awto bejergi we tehniki hyzmat</h1>
         <p class="lead text-secondary mb-4">Onlaýn kabul edişlige ýazylyň, awtoulagyňyzyň bejergi ýagdaýyna gözegçilik ediň we ýokary hilli hyzmat alyň.</p>
         @auth
@@ -14,7 +14,7 @@
     </div>
 </div>
 
-<div class="container mb-5">
+<div class="container-xxl mb-5">
     <div class="row g-4 text-center">
         <div class="col-md-4">
             <div class="card h-100 shadow-sm border-0 p-3">
