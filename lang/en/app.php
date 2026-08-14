@@ -170,4 +170,10 @@ return [
     'sunday' => 'Sunday',
     'off_day' => 'Off Day',
     'closed' => 'Closed',
+
+
+    'pending'     => 'Pending',
+    'in_progress' => 'In Progress',
+    'completed'   => 'Completed',
+    'Garaşylýar'  => 'Pending',
 ];

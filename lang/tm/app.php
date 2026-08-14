@@ -167,4 +167,9 @@ return [
     'sunday' => 'Ýekşenbe',
     'off_day' => 'Dynç güni',
     'closed' => 'Ýapyk',
+
+    'pending'     => 'Garaşylýar',
+    'in_progress' => 'Ýerine ýetirilýär',
+    'completed'   => 'Tamamlandy',
+    'Garaşylýar'  => 'Garaşylýar',
 ];
