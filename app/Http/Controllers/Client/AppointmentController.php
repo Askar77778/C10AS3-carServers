@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
 {
-
     public function index(Request $request)
     {
         $status = $request->input('status');
@@ -42,34 +41,38 @@ class AppointmentController extends Controller
 
         return view('client.appointments.index', compact('appointments', 'vehicles', 'mechanics', 'status', 'mechanicId', 'search'));
     }
-    
 
     public function create(Request $request)
     {
-
         $selectedService = $request->query('service', '');
         $vehicles = Vehicle::all();
+
         return view('client.appointments.create', compact('selectedService', 'vehicles'));
     }
 
     public function store(Request $request)
-{
-    $request->validate([
-        'vehicle_id'   => 'required|exists:vehicles,id',
-        'service_type' => 'required|string',
-        'description'  => 'nullable|string',
-    ]);
+    {
+        $request->validate([
+            'vehicle_id'   => 'required|exists:vehicles,id',
+            'service_type' => 'required|string',
+            'description'  => 'nullable|string',
+        ]);
 
-    auth()->user()->appointments()->create([
-        'vehicle_id'       => $request->vehicle_id,
-        'description'      => $request->service_type . ($request->description ? ' - ' . $request->description : ''),
-        'appointment_date' => now()->format('Y-m-d'), 
-        'appointment_time' => now()->format('H:i:s'), 
-        'status'           => 'pending',
-    ]);
+        $description = $request->description
+            ? $request->service_type . ' - ' . $request->description
+            : $request->service_type;
 
-    return redirect()->route('client.appointments.index')->with('success', 'Sargyt üstünlikli döredildi!');
-}
+        auth()->user()->appointments()->create([
+            'vehicle_id'       => $request->vehicle_id,
+            'description'      => $description,
+            'appointment_date' => now()->toDateString(),
+            'appointment_time' => now()->toTimeString(),
+            'status'           => 'pending',
+        ]);
+
+        return redirect()->route('client.appointments.index')->with('success', 'Sargyt üstünlikli döredildi!');
+    }
+
     public function cancel($id)
     {
         $appointment = Appointment::where('id', $id)->where('user_id', auth()->id())->firstOrFail();
