@@ -19,13 +19,13 @@
                         {{ app()->getLocale() }}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="{{ route('locale', 'tk') }}">TK</a></li>
+                        <li><a class="dropdown-item" href="{{ route('locale', 'tm') }}">TM</a></li>
                         <li><a class="dropdown-item" href="{{ route('locale', 'en') }}">EN</a></li>
                         <li><a class="dropdown-item" href="{{ route('locale', 'ru') }}">RU</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="btn btn-outline-light btn-sm" href="{{ route('home') }}">Home</a>
+                    <a class="btn btn-outline-light btn-sm" href="{{ route('home') }}">Site Home</a>
                 </li>
             </ul>
         </div>

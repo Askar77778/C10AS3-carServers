@@ -8,5 +8,5 @@ Route::middleware('auth')->prefix('mechanic')->name('mechanic.')->group(function
     Route::get('/schedule', [ScheduleController::class, 'index'])->name('schedule.index');
     Route::put('/schedule', [ScheduleController::class, 'update'])->name('schedule.update');
     Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
-    Route::put('/jobs/{id}/status', [JobController::class, 'updateStatus'])->name('jobs.status.update');
+    Route::put('/jobs/{id}', [JobController::class, 'updateStatus'])->name('jobs.update');
 });

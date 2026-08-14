@@ -6,6 +6,7 @@ use App\Http\Controllers\Mechanic\MechanicAuthController;
 use App\Http\Controllers\Admin\AdminAuthController;
 
 
+
 Route::get('/client/login', [ClientAuthController::class, 'showLogin'])->name('client.login');
 Route::post('/client/login', [ClientAuthController::class, 'login']);
 Route::get('/client/register', [ClientAuthController::class, 'showRegister'])->name('client.register');

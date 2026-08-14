@@ -10,11 +10,28 @@ use Illuminate\Http\Request;
 class SparePartController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $spareParts = SparePart::with('category')->latest()->get();
+        $search = trim((string) $request->input('search', ''));
+        $categoryId = $request->input('category_id');
+
+        $spareParts = SparePart::with('category')
+            ->when($search !== '', function ($query) use ($search) {
+                $query->where(function ($innerQuery) use ($search) {
+                    $innerQuery->where('name', 'like', "%{$search}%")
+                        ->orWhere('name_tm', 'like', "%{$search}%")
+                        ->orWhere('name_ru', 'like', "%{$search}%")
+                        ->orWhere('name_en', 'like', "%{$search}%");
+                });
+            })
+            ->when($categoryId !== null && $categoryId !== '', function ($query) use ($categoryId) {
+                $query->where('category_id', $categoryId);
+            })
+            ->latest()
+            ->get();
+
         $categories = Category::all();
-        return view('admin.spare_parts.index', compact('spareParts', 'categories'));
+        return view('admin.spare_parts.index', compact('spareParts', 'categories', 'search', 'categoryId'));
     }
 
 

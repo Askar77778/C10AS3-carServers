@@ -11,10 +11,26 @@ use Illuminate\Support\Facades\Hash;
 class MechanicController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $mechanics = Mechanic::with('user')->get();
-        return view('admin.mechanics.index', compact('mechanics'));
+        $search = $request->input('search');
+        $status = $request->input('status');
+
+        $mechanics = Mechanic::with('user')
+            ->when($search, function ($query, $search) {
+                $search = trim($search);
+                $query->whereHas('user', function ($userQuery) use ($search) {
+                    $userQuery->where('name', 'like', "%{$search}%")
+                        ->orWhere('phone', 'like', "%{$search}%");
+                })->orWhere('specialization', 'like', "%{$search}%");
+            })
+            ->when($status !== null && $status !== '', function ($query) use ($status) {
+                $query->where('is_available', $status === 'available' ? 1 : 0);
+            })
+            ->latest()
+            ->get();
+
+        return view('admin.mechanics.index', compact('mechanics', 'search', 'status'));
     }
 
 
@@ -54,5 +70,19 @@ class MechanicController extends Controller
         $user->delete();
 
         return redirect()->back()->with('success', 'Ussa ulgamdan öçürildi!');
+    }
+    public function update(Request $request, $id)
+    {
+    $request->validate([
+        'name' => 'required|string|max:255',
+    ]);
+
+    $mechanic = Mechanic::findOrFail($id);
+    
+    $mechanic->update([
+        'name' => $request->name,
+    ]);
+
+    return redirect()->back()->with('success', 'Mechanic maglumaty täzelendi!');
     }
 }

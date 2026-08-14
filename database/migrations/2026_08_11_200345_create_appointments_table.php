@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('vehicle_id')->constrained()->onDelete('cascade');
-            $table->foreignId('mechanic_id')->constrained()->onDelete('cascade');
+            $table->foreignId('mechanic_id')->nullable()->constrained()->nullOnDelete();
             $table->date('appointment_date');
             $table->time('appointment_time');
             $table->enum('status', ['Garaşylýar', 'Abatlanýar', 'Taýýar'])->default('Garaşylýar');

@@ -1,16 +1,16 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-secondary shadow-sm">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
     <div class="container-xxl">
-        <a class="navbar-brand fw-bold" href="#">Mechanic Portal</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mechanicNavbar">
+        <a class="navbar-brand fw-bold" href="{{ route('home') }}">{{ __('app.client_portal') }}</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#clientNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="mechanicNavbar">
+        <div class="collapse navbar-collapse" id="clientNavbar">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('mechanic.schedule.index') }}">Schedule</a>
+                    <a class="nav-link" href="{{ route('client.vehicles.index') }}">{{ __('app.my_vehicles') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('mechanic.jobs.index') }}">Assigned Jobs</a>
+                    <a class="nav-link" href="{{ route('client.appointments.index') }}">{{ __('app.appointments') }}</a>
                 </li>
             </ul>
             <ul class="navbar-nav align-items-center">
@@ -19,13 +19,13 @@
                         {{ app()->getLocale() }}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="{{ route('locale', 'tk') }}">TK</a></li>
+                        <li><a class="dropdown-item" href="{{ route('locale', 'tm') }}">TM</a></li>
                         <li><a class="dropdown-item" href="{{ route('locale', 'en') }}">EN</a></li>
                         <li><a class="dropdown-item" href="{{ route('locale', 'ru') }}">RU</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="btn btn-outline-light btn-sm" href="{{ route('home') }}">Site Home</a>
+                    <a class="btn btn-outline-light btn-sm" href="{{ route('home') }}">{{ __('app.site_home') }}</a>
                 </li>
             </ul>
         </div>

@@ -9,10 +9,22 @@ use Illuminate\Http\Request;
 class VehicleController extends Controller
 {
     
-    public function index()
+    public function index(Request $request)
     {
-        $vehicles = Vehicle::where('user_id', auth()->id())->latest()->get();
-        return view('client.vehicles.index', compact('vehicles'));
+        $search = trim((string) $request->input('search', ''));
+
+        $vehicles = Vehicle::where('user_id', auth()->id())
+            ->when($search !== '', function ($query) use ($search) {
+                $query->where(function ($innerQuery) use ($search) {
+                    $innerQuery->where('brand', 'like', "%{$search}%")
+                        ->orWhere('model', 'like', "%{$search}%")
+                        ->orWhere('license_plate', 'like', "%{$search}%");
+                });
+            })
+            ->latest()
+            ->get();
+
+        return view('client.vehicles.index', compact('vehicles', 'search'));
     }
 
   

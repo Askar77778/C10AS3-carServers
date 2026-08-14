@@ -10,7 +10,7 @@ class MechanicAuthController extends Controller
 {
     public function showLogin()
     {
-        return view('auth.mechanic-login');
+        return view('auth.login');
     }
 
 

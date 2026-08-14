@@ -10,54 +10,61 @@ use Illuminate\Support\Facades\Hash;
 
 class ClientAuthController extends Controller
 {
+
     public function showLogin()
     {
-        return view('auth.client-login');
+        return view('auth.login');
     }
+
 
     public function login(Request $request)
     {
-        $credentials = $request->validate([
-            'phone' => 'required|string',
-            'password' => 'required|string',
+        $request->validate([
+            'username' => ['required', 'string'],
+            'password' => ['required'],
         ]);
 
-        $credentials['role'] = 'client';
+ 
+        $credentials = [
+            'name'     => $request->username,
+            'password' => $request->password,
+        ];
 
-        if (Auth::attempt($credentials, $request->remember)) {
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->route('client.vehicles.index')->with('success', 'Hoş geldiňiz!');
+
+            return redirect()->intended(route('client.appointments.index'));
         }
 
         return back()->withErrors([
-            'phone' => 'Müşderi hesaby tapylmady ýa-da maglumatlar nädogry.',
-        ])->onlyInput('phone');
+            'username' => 'Girizilen ad ýa-da parol ýalňyş.',
+        ])->onlyInput('username');
     }
+
 
     public function showRegister()
     {
-        return view('auth.client-register');
+        return view('auth.register');
     }
 
 
     public function register(Request $request)
     {
+
         $request->validate([
-            'name' => 'required|string|max:255',
-            'phone' => 'required|string|unique:users,phone',
-            'password' => 'required|string|min:6|confirmed',
+            'username' => ['required', 'string', 'max:255', 'unique:users,name'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
 
+
         $user = User::create([
-            'name' => $request->name,
-            'phone' => $request->phone,
+            'name'     => $request->username,
             'password' => Hash::make($request->password),
-            'role' => 'client',
         ]);
 
         Auth::login($user);
 
-        return redirect()->route('client.vehicles.index')->with('success', 'Hesabyňyz döredildi!');
+        return redirect()->route('client.appointments.index');
     }
 
 
@@ -67,6 +74,6 @@ class ClientAuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('home')->with('success', 'Ulgamdan çykdyňyz.');
+        return redirect()->route('client.login');
     }
 }

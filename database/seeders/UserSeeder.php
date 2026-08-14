@@ -12,13 +12,13 @@ class UserSeeder extends Seeder
     {
         $users = [
             [
-                'name' => 'Askar Hudayberdiyew (Admin)',
+                'name' => 'admin',
                 'phone' => '+99361033268',
                 'role' => 'admin',
-                'password' => Hash::make('askar1713'),
+                'password' => Hash::make('admin'),
             ],
             [
-                'name' => 'Meredow Artyk',
+                'name' => 'Artyk',
                 'phone' => '+99361998877',
                 'role' => 'client',
                 'password' => Hash::make('artyk1234'),
@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('aman1234'),
             ],
             [
-                'name' => 'Ussa Babamyrat',
+                'name' => 'Babamyrat',
                 'phone' => '+99363987654',
                 'role' => 'mechanic',
                 'password' => Hash::make('baba1234'),

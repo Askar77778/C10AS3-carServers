@@ -11,12 +11,12 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function locale(string $locale)
+    public function locale($locale)
     {
-        if (in_array($locale, ['tm', 'ru', 'en'])) {
-            session(['locale' => $locale]);
-        }
+    if (in_array($locale, ['tm', 'en', 'ru'])) {
+        session()->put('locale', $locale);
+    }
 
-        return redirect()->back();
+    return redirect()->back();
     }
 }

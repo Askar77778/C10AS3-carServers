@@ -9,6 +9,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/mechanics', [AdminMechanicController::class, 'index'])->name('mechanics.index');
     Route::post('/mechanics', [AdminMechanicController::class, 'store'])->name('mechanics.store');
     Route::delete('/mechanics/{id}', [AdminMechanicController::class, 'destroy'])->name('mechanics.destroy');
+    Route::put('/mechanics/{id}', [MechanicController::class, 'update'])->name('mechanics.update');
     
     Route::get('/spare-parts', [AdminSparePartController::class, 'index'])->name('spare_parts.index');
     Route::post('/spare-parts', [AdminSparePartController::class, 'store'])->name('spare_parts.store');
