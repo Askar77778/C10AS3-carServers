@@ -1,0 +1,11 @@
+hasOne()
+
+Usa (Mechanic) Modelinde: Ulanyjy bilen ussanyň profilini baglamak üçin (User modeliniň içindäki mechanic() baglanyşygynda return $this->hasOne(Mechanic::class) görnüşinde ulanyldy).
+
+request()->all()
+
+Controller-lerde: Formadan gelen maglumatlary baza ýazdyrmak ýa-da maglumatlary döretmek üçin (Vehicle::create(request()->all()) ýa-da SparePart::create(request()->all()) ýaly yerlerde ulanyldy).
+
+$table->nullable()
+
+Database Migration faýllarynda: Bazada hökman doldurylmagy mejbury bolmadyk sütüner üçin (mysal üçin, awtoulagyň goşmaça bellikleri ýa-da ussanyň waglaýyn iş tertibi ýaly meýdançalarda $table->string('note')->nullable() görnüşinde ulanyldy).
